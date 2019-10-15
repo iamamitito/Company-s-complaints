@@ -8,6 +8,7 @@
 Complaint.destroy_all
 Company.destroy_all
 User.destroy_all
+AdminUser.destroy_all
 
 20.times do
   Company.create(
@@ -26,4 +27,7 @@ end
     content: Faker::Lorem.sentence,
     user_id: User.all.sample.id,
     company_id: Company.all.sample.id)
+
 end
+
+AdminUser.create!(email: "admin@example.com", password: "123456", password_confirmation: "123456") if Rails.env.development? 

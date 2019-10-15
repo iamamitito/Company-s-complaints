@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :complaints, except: [:create]
   resources :companies do
     resources :complaints, only: [:create]
   end
   devise_for :users
-  root to: 'companies#index'
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'companies#index'
 end

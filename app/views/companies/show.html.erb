@@ -1,21 +1,20 @@
-<p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @company.name %>
+  <h3><%= @company.name %></h3>
 </p>
 
 <%= render 'complaints/form', complaint: @complaint, company: @company %>
 
-
-<ul id="companyComplaints">
+<h3>Reclamos</h3>
+<ol id="companyComplaints" class="list-group">
 <% @company.complaints.order(created_at: :desc).each do |complaint| %>
-  <li><%= complaint.content %>
-  <%= complaint.user.email %></li>
+  <li class="list-group-item"><%= complaint.content %>
+  <strong>Reclamo por: </strong><%= complaint.user.email %></li>
 <% end %>
-</ul>
+</ol>
+<hr>
 
 
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<%= link_to 'Editar Empresa', edit_company_path(@company), class:"btn btn-info mb-2"  %> <br>
+<%= link_to 'Back', companies_path, class:"btn btn-dark" %>
