@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<%= render 'complaints/form', complaint: @complaint, company: @company %>
+
+
+<ul id="companyComplaints">
+<% @company.complaints.order(created_at: :desc).each do |complaint| %>
+  <li><%= complaint.content %>
+  <%= complaint.user.email %></li>
+<% end %>
+</ul>
+
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
